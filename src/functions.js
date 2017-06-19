@@ -25,24 +25,26 @@ exports.getLocalTime = function (ns) {
 }
 
 var params = null
+var getURL = function (item) {
+  return 'https://cloud-app-api.dev.xlhb.com/v1/' + item + '.api'
+}
 var getParams = function () {
   if (params !== null) {
     return params
   }
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_abab67e41a78e6ec64a15f45760241ef' // teacher010
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_a530760217c46179cb9cdcc1b78f124b' // xlhbuser31 学生
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_40f6b6201c717d531763207476568344' // sunny01 心理老师
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_4a710f185b98dad71b52c1ea76dae74a' // nail002班主任
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/homepage.api?token=sess_21fe20e343e5c84396f17e43cdc9943e' // chuerlaoshi01班主任  1234567a
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_e6e5e0dd4132d13083b2da19d7b64707' // chuyilaoshi01班主任  1234567a
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_76a50a42951ffc72382a929db3beb068&role=PSYCHOLOGY_TEACHER' // testone 心理老师
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_5d1930a34c47553e4c82430f212f6d89&role=EDUCATION_BOARD' // 市教育局
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_b61f54ba28f2dac78c3a75f1264cd317&role=EDUCATION_BOARD' // 区教育局
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=t6b1416f8493996414a51d9592f8030d&role=PSYCHOLOGY_TEACHER' // testtwo 心理老师
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_612b2f3f62f00f3dd8cc2173cbfaf091' // mmm001 家长 bbbb8888
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_4657868c3dfd8a61afdfe59ad8202a77' // jiahaoba 家长
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_540a767a3ca16b5ab57d34306a6d9ddb' // nail010 教职工
-  // var href = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?token=sess_f667a25e7543632011bd20492252a6ba' // jiahao01  学生
+  // let href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef`   // teacher010
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // xlhbuser31 学生
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=PSYCHOLOGY_TEACHER` // sunny01 心理老师
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // nail002班主任
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // chuyilaoshi01班主任  1234567a
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=PSYCHOLOGY_TEACHER` // testone 心理老师
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=EDUCATION_BOARD` // 市教育局
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=EDUCATION_BOARD` // 区教育局
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=PSYCHOLOGY_TEACHER` // testtwo 心理老师
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // mmm001 家长 bbbb8888
+  // var href = `${getURL('activity/view')}?token=t4fea31a01f6c3bd9bf928b273062903` // jiahaoba 家长
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // nail010 教职工
+  // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // jiahao01  学生
   var href = window.location.href
   params = {}
   if (href) {
@@ -67,9 +69,6 @@ var getParam = function (name) {
     return params[name]
   }
   return null
-}
-var getURL = function (item) {
-  return 'https://cloudappapi.test.xlhb.com/v1/' + item + '.api'
 }
 var sendParam = function (obj) {
   var params = { access_token: getParam('token') }
@@ -145,11 +144,10 @@ exports.preventZoom = function (e) {
 exports.getLoadTime = function () {
   // var starttime = new Date()
   // var endtime = ''
-  var token = getParam('token')
   var role = getParam('role')
   console.log(role, '角色')
   if (role !== 'EDUCATION_BOARD') {
-    window.$.jsonp('https://cloudappapi.test.xlhb.com/v1/homepage.api?access_token=' + token, function (obj) {
+    window.$.jsonp(`${getURL('homepage')}?access_token=${getParam('token')}`, function (obj) {
       window.$.invoke('showMessage', { code: obj.code, message: obj.msg })
       // endtime = new Date()
       // var interval = endtime.getTime() - starttime.getTime()
@@ -160,7 +158,7 @@ exports.getLoadTime = function () {
       // }
     })
   } else if (role === 'EDUCATION_BOARD') {
-    window.$.jsonp('https://cloudappapi.test.xlhb.com/v1/user/user-info.api?access_token=' + token, function (obj) {
+    window.$.jsonp(`${getURL('user/user-info')}?access_token=${getParam('token')}`, function (obj) {
       window.$.invoke('showMessage', { code: obj.code, message: obj.msg })
       // endtime = new Date()
       // var interval = endtime.getTime() - starttime.getTime()

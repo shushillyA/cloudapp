@@ -157,7 +157,8 @@ export default {
   methods: {
               // 渲染数据
     renderData: function () {
-      var url = 'https://cloudappapi.test.xlhb.com/v1/record/select-behavior.api?access_token='
+      // var url = 'v1/record/select-behavior.api?access_token='
+      var url = `${functions.getURL('record/select-behavior')}?access_token=`
       var self = this
         // 渲染数据
       var token = functions.getParam('token')

@@ -948,10 +948,6 @@
 <script>
   import functions from '../functions'
   import echarts from 'echarts'
-  // var token = functions.getParam('token')
-  // var role = functions.getParam('role')
-  // var HOMEPAGE_URL = 'https://cloudappapi.test.xlhb.com/v1/homepage.api?access_token='
-  // var HOMEPAGE_URL_EDU = 'https://cloudappapi.test.xlhb.com/v1/edu-homepage.api?access_token='
   export default {
     name: 'home',
     beforeCreate () {
@@ -1269,12 +1265,13 @@
       renderData: function () {
         var self = this
         // var maxStr = 15
-        var url = 'https://cloudappapi.test.xlhb.com/v1/homepage.api?access_token='
+        // var url = 'v1/homepage.api?access_token='
+        var url = `${functions.getURL('homepage')}?access_token=`
         var token = functions.getParam('token')
         url = url + token
         console.log(url)
         window.$.jsonp(url, function (obj) {
-          console.log(obj, '数据')
+          console.log(obj, '获得的数据')
           // 回调函数
           if (obj) {   // 如果有收到obj
             // 保存到vuex
@@ -1306,7 +1303,8 @@
         self.renderEvaluationData(0)
       },
       renderEduData: function () {
-        var url = 'https://cloudappapi.test.xlhb.com/v1/edu-homepage.api?access_token='
+        // var url = 'v1/edu-homepage.api?access_token='
+        var url = `${functions.getURL('edu-homepage')}?access_token=`
         var token = functions.getParam('token')
         url = url + token
         console.log(url, '地址')
@@ -1706,7 +1704,8 @@
       },
       getPeriod: function () {
         var token = functions.getParam('token')
-        var url = 'https://cloudappapi.test.xlhb.com/v1/homepage/declare-period.api?access_token=' + token
+        // var url = 'v1/homepage/declare-period.api?access_token=' + token
+        var url = `${functions.getURL('homepage/declare-period')}?access_token=${token}`
         var self = this
         window.$.jsonp(url, function (obj) {
           console.log(url)
@@ -1732,7 +1731,8 @@
           this.dealShow = false
           if (this.role === 'CLASS_TEACHER' || this.role === 'PSYCHOLOGY_TEACHER') {
             var token = functions.getParam('token')
-            var DECLARE_URL = 'https://cloudappapi.test.xlhb.com/v1/homepage/declare-push.api?access_token=' + token + '&period_id=' + this.period_id
+            // var DECLARE_URL = 'v1/homepage/declare-push.api?access_token=' + token + '&period_id=' + this.period_id
+            var DECLARE_URL = `${functions.getURL('homepage/declare-push')}?access_token=${token}&period_id=${this.period_id}`
           }
           console.log(DECLARE_URL)
           window.$.jsonp(DECLARE_URL, function () {
@@ -1757,7 +1757,8 @@
       },
       goMore: function () {
         // router-link :to="{name: 'sheetlist'}"
-        this.$http.jsonp('https://apicloud.xlhb.com/v1/user/user-info.api', {params: {access_token: functions.getParam('token')}}).then(
+        // 'v1/user/user-info.api'
+        this.$http.jsonp(functions.getURL('user/user-info'), {params: {access_token: functions.getParam('token')}}).then(
           function (obj) {
             // console.log(obj, 'getUserInfo')
             obj = obj.data

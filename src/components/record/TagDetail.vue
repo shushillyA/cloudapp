@@ -47,7 +47,6 @@
 
 </style>
 <script>
-// var BEHAVE_URL = 'https://cloudappapi.test.xlhb.com/v1/record/select-behavior.api?access_token='
 import functions from '../../functions'
 export default {
   name: 'tagdetail',
@@ -71,11 +70,8 @@ export default {
   methods: {
                   // 渲染数据
     renderData: function () {
-      // var url = 'https://cloudappapi.test.xlhb.com/v1/record/select-behavior.api?access_token='
       var self = this
         // 渲染数据
-      // var token = functions.getParam('token')
-      // url = url + token
       this.$http.jsonp(functions.getURL('record/select-behavior'), functions.sendParam()).then(function (obj) {
         console.log(obj, '收到的数据')
         var results = obj.data.data.behavior_labels

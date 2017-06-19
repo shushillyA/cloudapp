@@ -89,7 +89,6 @@ export default{
       var self = this
       var token = functions.getParam('token')
       this.$http.jsonp(
-        // 'https://cloudappapi.test.xlhb.com/v1/warning/w-item-detail.api',
         functions.getURL('warning/w-item-detail'),
         {
           params: {

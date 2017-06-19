@@ -150,7 +150,8 @@ export default{
     },
     clickButton: function () {
       console.log('保存成功了吗')
-      var ADDDATA_URL = 'https://cloudappapi.test.xlhb.com/v1/record/add-data.api?access_token='
+      // var ADDDATA_URL = 'v1/record/add-data.api?access_token='
+      var ADDDATA_URL = `${functions.getURL('record/add-data')}?access_token=`
       var token = functions.getParam('token')
       var params = this.$store.state.record
       if (!params.id) {
@@ -162,6 +163,7 @@ export default{
         console.log(url)
         var self = this
         window.$.jsonp(url, function (obj) {
+          console.log(obj, '收到的数据')
           try {
             self.prev()
             window.$.invoke('showMessage', {code: '10000'})

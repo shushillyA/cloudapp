@@ -110,9 +110,7 @@
   }
 </style>
 <script>
-// var BEHAVE_URL = 'https://cloudappapi.test.xlhb.com/v1/record/select-effect.api?access_token='
 import functions from '../../functions'
-// var params, selectsEffect
 export default {
   name: 'effect',
   created () {
@@ -155,7 +153,6 @@ export default {
   methods: {
                // 渲染数据
     renderData: function () {
-      // var url = 'https://cloudappapi.test.xlhb.com/v1/record/select-effect.api?access_token='
       var self = this
         // 渲染数据
       // var token = functions.getParam('token')

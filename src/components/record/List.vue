@@ -121,13 +121,6 @@
 </style>
 <script>
 import functions from '../../functions'
-// var RECORD_URL = 'https://cloudappapi.test.xlhb.com/v1/record.api?access_token='
-// var touchRefresh = null
-// var page = 1
-// var count
-// var pageSize
-// var storage = []
-// var recordTemp
 export default {
   name: 'record',
   data () {
@@ -194,7 +187,6 @@ export default {
       // }
       let self = this
        // 渲染数据
-      // var RECORD_URL = 'https://cloudappapi.test.xlhb.com/v1/record.api?access_token='
       this.$http.jsonp(functions.getURL('record'), {params: {access_token: functions.getParam('token'), page: this.page}}).then(
       function (obj) {
         console.log(obj, '收到的数据')

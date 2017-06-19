@@ -70,7 +70,8 @@
     methods: {
       // 渲染数据
       renderData: function () {
-        var url = 'https://cloudappapi.test.xlhb.com/v1/activity/get-activity-user-scale.api?access_token='
+        // var url = 'v1/activity/get-activity-user-scale.api?access_token='
+        var url = `${functions.getURL('activity/get-activity-user-scale')}?access_token=`
         var self = this
         self.items = []
         // url = url + '&' + this.$route.params.ce_type

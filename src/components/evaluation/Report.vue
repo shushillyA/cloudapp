@@ -168,7 +168,6 @@
 </style>
 <script>
 import functions from '../../functions'
-// var REPORTURL = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?access_token='
 export default {
   name: 'report',
   data () {
@@ -204,7 +203,6 @@ export default {
   },
   methods: {
     renderData: function () {
-      // var url = 'https://cloudappapi.test.xlhb.com/v1/activity/view.api?access_token='
       var self = this
       // var token = functions.getParam('token')
       console.log(self.$route.params)

@@ -252,11 +252,6 @@
 </style>
 <script>
 import functions from '../../functions'
-// import Vue from 'vue'
-// var AUDIT_URL = 'https://cloudappapi.test.xlhb.com/v1/record/audit-apply-record.api?access_token=' // 心理老师处理申请
-// var APPLYSEE_URL = 'https://cloudappapi.test.xlhb.com/v1/record/apply-see-record.api?access_token=' // 班主任申请查看行为记录
-// var token = functions.getParam('token')
-// var url
 export default {
   name: 'recorddetail',
   data () {
@@ -324,7 +319,8 @@ export default {
         org_id: this.$store.state.behavior.org_id,
         ids: this.recordData
       }
-      this.$http.jsonp('https://cloudappapi.test.xlhb.com/v1/edu-bwarning/behavior-check.api', {params: sendData}).then(function (obj) {
+      // 'v1/edu-bwarning/behavior-check.api'
+      this.$http.jsonp(functions.getURL('edu-bwarning/behavior-check'), {params: sendData}).then(function (obj) {
         var record = this.$route.query.items
         console.log('传递过来的数据')
         console.log(this.$route.query.items)
@@ -388,7 +384,8 @@ export default {
     },
     apply_audit: function (item, e) { // 教育局申请查看干预
       var token = functions.getParam('token')
-      var APPLYSEE_URL = 'https://cloudappapi.test.xlhb.com/v1/edu-bwarning/apply-see-record.api?access_token=' // 教育局申请查看干预
+      // var APPLYSEE_URL = 'v1/edu-bwarning/apply-see-record.api?access_token=' // 教育局申请查看干预
+      let APPLYSEE_URL = `${functions.getURL('edu-bwarning/apply-see-record')}?access_token=${token}` // 教育局申请查看干预
       e.target.className = 'apply_yes'
       this.$invoke('showMessage', {message: '申请成功，请等待审核！'})
       var url = APPLYSEE_URL + token + '&record_id=' + item.record_id + '&org_id=' + item.org_id

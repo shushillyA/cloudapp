@@ -93,9 +93,6 @@
 </style>
 <script>
 import functions from '../../functions'
-// var SEARCHSTU_URL = 'https://cloudappapi.test.xlhb.com/v1/record/search-student.api?access_token='
-// var dataList = null
-// var storage = []
 export default {
   name: 'searchstu',
   created () {
@@ -143,7 +140,8 @@ export default {
   },
   methods: {
     renderData: function (key) {
-      var url = 'https://cloudappapi.test.xlhb.com/v1/record/search-student.api?access_token='
+      // var url = 'v1/record/search-student.api?access_token='
+      var url = `${functions.getURL('record/search-student')}?access_token=`
       var self = this
       self.loading = true
       var token = functions.getParam('token')
@@ -182,7 +180,8 @@ export default {
       })
     },
     searchData: function (key) {
-      var url = 'https://cloudappapi.test.xlhb.com/v1/record/search-student.api?access_token='
+      // var url = 'v1/record/search-student.api?access_token='
+      var url = `${functions.getURL('record/search-student')}?access_token=`
       var self = this
       self.temps = []
       var token = functions.getParam('token')

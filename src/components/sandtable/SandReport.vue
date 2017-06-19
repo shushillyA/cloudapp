@@ -275,7 +275,6 @@ height:100%;
 }
 </style>
 <script>
-// var SAND_URL = 'https://cloudappapi.test.xlhb.com/v1/sand/detail.api?access_token='
 import functions from '../../functions'
 export default {
   name: 'sandreport',

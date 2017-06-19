@@ -2,7 +2,7 @@
 var Func = {}
 Func.install = function (Vue, options) {
   Vue.prototype.$getURL = function (item) {
-    return 'https://cloudappapi.test.xlhb.com/v1/' + item + '.api'
+    return 'https://cloud-app-api.dev.xlhb.com/v1/' + item + '.api'
   }
   Vue.prototype.$sendParam = function (num) {
     return {

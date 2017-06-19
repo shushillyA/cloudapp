@@ -330,11 +330,6 @@
 </style>
 <script>
 import functions from '../../functions'
-// import Vue from 'vue'
-// var AUDIT_URL = 'https://cloudappapi.test.xlhb.com/v1/record/audit-apply-record.api?access_token=' // 心理老师处理申请
-// var APPLYSEE_URL = 'https://cloudappapi.test.xlhb.com/v1/record/apply-see-record.api?access_token=' // 班主任申请查看行为记录
-// var token = functions.getParam('token')
-// var url
 export default {
   name: 'recorddetail',
   data () {
@@ -438,7 +433,8 @@ export default {
       }
       var self = this
       this.i = index // 控制当前点击对象的状态或样式
-      var EDNNAME_URL = 'https://cloudappapi.test.xlhb.com/v1/edu-bwarning/get-school-name.api?access_token=' // 获取教育局名字
+      // var EDNNAME_URL = 'v1/edu-bwarning/get-school-name.api?access_token=' // 获取教育局名字
+      var EDNNAME_URL = `${functions.getURL('edu-bwarning/get-school-name')}?access_token=` // 获取教育局名字
       EDNNAME_URL = EDNNAME_URL + token + '&id=' + item.educ_id_apply
       // EDNNAME_URL = EDNNAME_URL + token + '&id=' + 1
       console.log(EDNNAME_URL, '教育局接口')
@@ -461,7 +457,8 @@ export default {
     },
     chooseTeach: function (choice, item, status) {
       var token = functions.getParam('token')
-      var AUDIT_URL = 'https://cloudappapi.test.xlhb.com/v1/record/audit-apply-record.api?access_token=' // 心理老师处理申请
+      // var AUDIT_URL = 'v1/record/audit-apply-record.api?access_token=' // 心理老师处理申请
+      var AUDIT_URL = `${functions.getURL('record/audit-apply-record')}?access_token=` // 心理老师处理申请
       this.choice = choice
       var url
       // url = AUDIT_URL + token + '&record_id=' + item.record_id + '&org_id=' + item.org_id + '&role=' + '2' + '&educ_apply_status=' + item.educ_apply_status + '&audit_status=' + status
@@ -482,7 +479,8 @@ export default {
     },
     chooseEduc: function (choice, item, status) {
       var token = functions.getParam('token')
-      var AUDIT_URL = 'https://cloudappapi.test.xlhb.com/v1/record/audit-apply-record.api?access_token=' // 心理老师处理申请
+      // var AUDIT_URL = 'v1/record/audit-apply-record.api?access_token=' // 心理老师处理申请
+      var AUDIT_URL = `${functions.getURL('record/audit-apply-record')}?access_token=` // 心理老师处理申请
       this.choice = choice
       var url
       if (this.layerShow_educ) {
@@ -502,7 +500,8 @@ export default {
     },
     apply_audit: function (item, e) { // 班主任申请查看行为记录
       var token = functions.getParam('token')
-      var APPLYSEE_URL = 'https://cloudappapi.test.xlhb.com/v1/record/apply-see-record.api?access_token=' // 班主任申请查看行为记录
+      // var APPLYSEE_URL = 'v1/record/apply-see-record.api?access_token=' // 班主任申请查看行为记录
+      var APPLYSEE_URL = `${functions.getURL('record/apply-see-record')}?access_token=` // 班主任申请查看行为记录
       e.target.className = 'apply_yes'
       this.$invoke('showMessage', {message: '申请成功，请等待审核！'})
       var url = APPLYSEE_URL + token + '&record_id=' + item.record_id
