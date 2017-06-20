@@ -42,10 +42,10 @@ var getParams = function () {
   // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=EDUCATION_BOARD` // 区教育局
   // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef&role=PSYCHOLOGY_TEACHER` // testtwo 心理老师
   // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // mmm001 家长 bbbb8888
-  // var href = `${getURL('activity/view')}?token=t4fea31a01f6c3bd9bf928b273062903` // jiahaoba 家长
+  var href = `${getURL('activity/view')}?token=t4fea31a01f6c3bd9bf928b273062903` // jiahaoba 家长
   // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // nail010 教职工
   // var href = `${getURL('activity/view')}?token=sess_abab67e41a78e6ec64a15f45760241ef` // jiahao01  学生
-  var href = window.location.href
+  // var href = window.location.href
   params = {}
   if (href) {
     var queryString = href.toString().match(/\?([^#]+)/)
