@@ -122,10 +122,13 @@
       try {
         if (window.entrance === 'evaluation' && JSON.stringify(this.$route.query) === '{}') {
           window.$.invoke('toggleNavigation', { isShow: true }) // 隐藏返回显示底部
+          // window.$.invoke('showMessage', {message: '没有路由参数'})
         } else if (window.entrance === 'evaluation' && JSON.stringify(this.$route.query) !== '{}') {
           window.$.invoke('toggleNavigation', { isShow: false })
+          // window.$.invoke('showMessage', {message: '有路由参数' + JSON.stringify(this.$route.query)})
         } else if (window.entrance !== 'evaluation') {
           window.$.invoke('toggleNavigation', { isShow: false }) // 显示返回  隐藏底部
+          // window.$.invoke('showMessage', {message: '其他情况'})
         }
         window.$.invoke('setTitle', { title: '测评' })
       } catch (e) {
